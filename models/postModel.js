@@ -6,6 +6,10 @@ const postSchema = mongoose.Schema({
         required: true,
         ref: 'User'
     },
+    title: {
+        type: String,
+        require: [true, 'please add a post']
+    },
     content: {
         type: String,
         require: [true, 'please add a post']
