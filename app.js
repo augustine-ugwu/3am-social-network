@@ -13,14 +13,14 @@ app.use(express.urlencoded({ extended: false }));
 connectDB;
 
 //routes
-app.get('/M00877074/posts', async (req, res)=>{
+app.get('/M00914279/posts', async (req, res)=>{
   const posts = await Post.find()
   res.status(200).json(posts)
 })
 
 // register user
-app.post('/M00877074/user/register', async (req, res)=>{
-  const {username, email, profile_info, password} = req.body
+app.post('/M00914279/user/register', async (req, res)=>{
+  const {username, email, userid, password} = req.body
   
   if(!username || !email || !profile_info || !password){
       res.status(400)
@@ -33,22 +33,22 @@ app.post('/M00877074/user/register', async (req, res)=>{
 
   // create user
   const user = await User.create({
-      username,
-      profile_info,
+      userid,
+      fullname,
       email,
       password: hashed_password
   })
 
     res.status(201).json({
         _id: user.id,
-        name: user.name,
-        email: user.email
+        userid: user.userid,
+        fullname: user.fullname
     })
 })
 
 
 // user post content
-app.post('/M00877074', async (req, res)=>{
+app.post('/M00914279', async (req, res)=>{
   const {author, content} = req.body
   
   if(!author || !content){
@@ -69,6 +69,6 @@ app.post('/M00877074', async (req, res)=>{
 })
 
 
-app.listen(4000, () => {
-  console.log("App is listening on port 4000");
+app.listen(5050, () => {
+  console.log("App is listening on port 5050");
 });
