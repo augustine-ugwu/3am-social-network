@@ -4,5 +4,26 @@
     "express": "^4.18.3",
     "mongoose": "^8.2.0",
     "nodemon": "^3.1.0"
-  }
+  },
+  "name": "3am-social-network",
+  "description": "music social network",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/augustine-ugwu/3am-social-network.git"
+  },
+  "author": "Abubakar Abdullahi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/augustine-ugwu/3am-social-network/issues"
+  },
+  "homepage": "https://github.com/augustine-ugwu/3am-social-network#readme"
 }
