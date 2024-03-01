@@ -18,12 +18,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/augustine-ugwu/3am-social-network.git"
+    "url": ""
   },
   "author": "Abubakar Abdullahi",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/augustine-ugwu/3am-social-network/issues"
-  },
-  "homepage": "https://github.com/augustine-ugwu/3am-social-network#readme"
+  "homepage": ""
 }
