@@ -1,0 +1,7 @@
+$theme-colors: (
+  "primary": midnightblue,
+  "secondary": grey,
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "Assets/css/custom.css";

@@ -4,156 +4,218 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3am Social Media Network</title>
-    <link rel="stylesheet" href="main.css" />
+
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="/main.css" />
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap"
+      rel="stylesheet" />
+    <!-- Icons Set -->
+    <link
       rel="stylesheet"
-    />
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
   </head>
-  <link
-    rel="stylesheet"
-    href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
-  />
   <body>
-    <nav class="navbar">
-      <nav class="nav-logo">3am Social Network</nav>
-      <button class="login-btn" onclick="openModal('loginModal')">
-        Log In
-      </button>
-      <input
-        spellcheck="false"
-        type="text"
-        class="search"
-        id="search"
-        placeholder="e.g. Nike Trainers"
-      />
-      <button
-        onclick="toggleSearch()"
-        type="button"
-        class="search-toggle search-btn"
-      ></button>
+    <!-- Navbar -->
+    <nav class="navbar bg-white z-2 fixed-top shadow-sm py-sm-2 px-sm-3">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand text-primary ms-4 fs-4 fw-semibold"
+          style="font-family: Bubblegum Sans"
+          >3am Social Network</a
+        >
+        <form class="d-flex" role="search">
+          <button class="btn btn-primary me-4 fw-medium px-sm-4" type="button">
+            Login
+          </button>
+          <input
+            class="search me-2 border-0 rounded bg-body-secondary px-sm-5 py-sm-2"
+            type="search"
+            placeholder="enter search keywords"
+            aria-label="Search" />
+        </form>
+      </div>
     </nav>
 
-    <div class="left-section">
-      <div class="hero">
-        <div class="overlay-content">
-          <h1>Welcome to 3am Social Network</h1>
-          <p class="sub-text">
-            The ultimate platform for aspiring artists, musicians, producers,
-            and DJs worldwide to connect, collaborate, and create together.
-            Whether you're a seasoned professional or just starting your journey
-            in the music industry, 3am Social Network is your gateway to a
-            vibrant community of like-minded individuals passionate about music.
-          </p>
-          <button class="signup-btn" onclick="openModal('signUpModal')">
-            Sign Up
-          </button>
+    <!-- Main Content -->
+    <div class="container-fluid g-0">
+      <div class="row gx-0">
+        <!-- Left Section -->
+        <div
+          class="col-9 position-relative d-flex align-items-center justify-content-center overflow-hidden pt-1">
+          <div class="text-center z-3 w-75">
+            <div class="px-3 lh-sm">
+              <h1 class="fs-1 fw-bolder mt-0">Welcome to 3am Social Network</h1>
+              <p class="fs-5 fw-medium mt-4">
+                The ultimate platform for aspiring artists, musicians,
+                producers, and DJs worldwide to connect, collaborate, and create
+                together. Whether you're a seasoned professional or just
+                starting your journey in the music industry, 3am Social Network
+                is your gateway to a vibrant community of like-minded
+                individuals passionate about music.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary fw-medium px-sm-4"
+                data-bs-toggle="modal"
+                data-bs-target="#signup"
+                data-bs-whatever="@signup">
+                Sign up
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="modal fade m-3"
+            id="signup"
+            tabindex="-1"
+            aria-labelledby="signuupLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="signupLabel">New message</h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="row">
+                      <div class="mb-3 col-6">
+                        <label for="InputFname" class="form-label"
+                          >First Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputFname"
+                          aria-describedby="Fname" />
+                      </div>
+
+                      <div class="mb-3 col-6">
+                        <label for="InputFname" class="form-label"
+                          >Last Name</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputLname"
+                          aria-describedby="Lname" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mb-3 col-6">
+                        <label for="InputEmail1" class="form-label"
+                          >Email address</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="InputEmail1"
+                          aria-describedby="emailHelp" />
+                      </div>
+                      <div class="mb-3 col-6">
+                        <label for="InputUsername" class="form-label"
+                          >Username</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="InputUsername" />
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="mb-3 col-6">
+                        <label for="InputPassword1" class="form-label"
+                          >Password</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="InputPassword1" />
+                      </div>
+                      <div class="mb-3 col-6">
+                        <label for="InputPassword2" class="form-label"
+                          >Confirm Password</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="InputPassword2" />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary text-white"
+                    data-bs-dismiss="modal">
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Section -->
+        <div
+          class="col-3 align-items-center justify-content-center pt-5 mt-4"
+          style="background-color: whitesmoke">
+          <p class="text-center fw-bolder fs-5 mb-0">News Feed</p>
+          <div class="card m-auto mt-2" style="width: 22rem">
+            <img
+              src="/Assets/img/music-band.jpg"
+              class="card-img-top"
+              alt="Music band photo" />
+            <div class="card-body">
+              <h5 class="card-title fs-6 fw-bold">
+                New Album Release: "Midnight Melodies"
+              </h5>
+              <p class="card-text fs-6 lh-sm">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+                interdum.
+              </p>
+              <a href="#" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+          <div class="upload">
+            <h4 class="text-center fw-bolder fs-6 mt-4">
+              Share Your Story: Upload Your Journey
+            </h4>
+            <div class="drop_box">
+              <header>
+                <h4>Select File here</h4>
+              </header>
+              <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
+              <input
+                type="file"
+                hidden
+                accept=".doc,.docx,.pdf"
+                id="fileID"
+                style="display: none" />
+              <button class="btn btn-primary">Choose File</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="right-section">
-      <h3 class="title">
-        <b>News Feed</b>
-      </h3>
-      <div class="card">
-        <img src="/Assets/music-band.jpg" alt="Avatar" style="width: 100%" />
-        <div class="card-body">
-          <h4>New Album Release: "Midnight Melodies"</h4>
-          <p><b>Read More</b></p>
-        </div>
-      </div>
-      <div class="upload">
-        <h4 class="title2">Share Your Story: Upload Your Journey</h4>
-        <div class="drop_box">
-          <header>
-            <h4>Select File here</h4>
-          </header>
-          <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
-          <input
-            type="file"
-            hidden
-            accept=".doc,.docx,.pdf"
-            id="fileID"
-            style="display: none"
-          />
-          <button class="btn">Choose File</button>
-        </div>
-      </div>
-    </div>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Sign Up Modal -->
-    <div id="signUpModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal('signUpModal')">&times;</span>
-        <h2 style="color: #fff">Sign Up</h2>
-        <div class="form">
-          <div class="inputBox">
-            <i>First Name</i>
-            <input type="text" required />
-          </div>
-          <div class="inputBox">
-            <i>Last Name</i>
-            <input type="text" required />
-          </div>
-          <div class="inputBox">
-            <i>Username</i>
-            <input type="text" required />
-          </div>
-          <div class="inputBox">
-            <i>Password</i>
-            <input type="password" required />
-          </div>
-          <div class="inputBox">
-            <i>Confirm Password</i>
-            <input type="password" required />
-          </div>
-          <div class="inputBox">
-            <input type="submit" value="Sign In" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal('loginModal')">&times;</span>
-        <h2 style="color: #fff">Login</h2>
-        <div class="form">
-          <div class="inputBox">
-            <i>Username</i>
-            <input type="text" required />
-          </div>
-          <div class="inputBox">
-            <i>Password</i>
-            <input type="password" required />
-          </div>
-          <div class="links">
-            <a href="#">Forgot Password</a>
-          </div>
-          <div class="inputBox">
-            <input type="submit" value="Login" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script type="text/javascript">
-      const toggleMenu = () => {
-        document.body.classList.toggle("open");
-      };
-    </script>
-
-    <script type="text/javascript">
-      const toggleSearch = () => document.body.classList.toggle("open");
-    </script>
-    <script src="/main.js"></script>
+    <script src="/Assets/js/main.js"></script>
   </body>
 </html>
