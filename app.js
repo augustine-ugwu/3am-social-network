@@ -48,11 +48,13 @@ app.use(flash())
 app.get('/', async (req, res)=>{
   const posts = await Post.find()
   const is_authenticated = req.session.isAuth;
+  const username = req.session.email
   
   const context = {
     success: req.flash("success"), 
     error: req.flash("error"), 
-    is_authenticated
+    is_authenticated,
+    username
   }
   res.render('index.ejs', context)
 })
@@ -135,7 +137,7 @@ app.post('/M00914279/login', async (req, res)=>{
   req.flash('success', `${user.username}, you logged In.`)
   req.session.isAuth = true;
   req.session.fullname = user.fname + " " + user.lame
-  req.session.email = user.username
+  req.session.username = user.username
   req.session.id = user.id
   return res.redirect('/')
 })
