@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const URL = 'mongodb+srv://augustineugwu:Auestinegluy007@austinecluster.tk4adli.mongodb.net/music_connect'
+const URL = 'mongodb://127.0.0.1:27017/music_connect'
 
 const connectDB = async ()=>{
     try{
