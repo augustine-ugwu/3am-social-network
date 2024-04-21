@@ -5,6 +5,18 @@ const Post = require("./models/postModel");
 const User = require("./models/userModel");
 const bcrypt = require("bcryptjs");
 
+const session = require('express-session');
+const flash = require('connect-flash')
+
+// mongodb session 
+const mongoDBSession = require('connect-mongodb-session')(session)
+
+// mongoDB session store
+const store = mongoDBSession({
+    uri: 'mongodb://127.0.0.1:27017/music_connect_db',
+    collection: 'musicSessions'
+})
+
 //Init app & middleware
 const app = express();
 app.use(express.json());
