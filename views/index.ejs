@@ -543,7 +543,28 @@
                 </h6>
               </div>
               <!-- List of requests -->
-              <div class="card-body">
+              <% users.forEach(user=>{ %>
+                <div class="card-body">
+                  <div class="d-flex flex-row">
+                    <span class="m-auto ms-0 fw-medium"></span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex flex-row">
+                    <span class="m-auto ms-0 fw-medium"><%= user.fname %> <%= user.lname %></span>
+                    <div class="ms-auto">
+                      <button
+                        type="button"
+                        class="btn btn-success fw-medium px-sm-4 text-white">
+                        Send Request
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <hr class="divider my-0" />
+            <% }) %>
+              <!-- <div class="card-body">
                 <div class="d-flex flex-row">
                   <span class="m-auto ms-0 fw-medium">John Matthew</span>
                   <div class="ms-auto">
@@ -666,7 +687,7 @@
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
