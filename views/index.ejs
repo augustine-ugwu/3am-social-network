@@ -140,7 +140,6 @@
                       id="InputPassword2" />
                   </div>
                 </div>
-              <!-- </form> -->
             </div>
             <div class="modal-footer">
               <button
@@ -203,43 +202,45 @@
                       data-bs-dismiss="modal"
                       aria-label="Close"></button>
                   </div>
-                  <div class="modal-body">
-                    <!-- Login form  -->
-                    <form>
-                      <div class="row">
-                        <div class="mb-3 col">
-                          <label for="InputUsername" class="form-label"
-                            >Username</label
-                          >
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="InputUsername" />
+                  <!-- Login form  -->
+                  <form action="/M00914279/login" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                          <div class="mb-3 col">
+                            <label for="InputUsername" class="form-label"
+                              >Username</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="username"
+                              id="InputUsername" />
+                          </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="mb-3 col">
-                          <label for="InputPassword1" class="form-label"
-                            >Password</label
-                          >
-                          <input
-                            type="password"
-                            class="form-control"
-                            id="InputPassword1" />
+                        <div class="row">
+                          <div class="mb-3 col">
+                            <label for="InputPassword1" class="form-label"
+                              >Password</label
+                            >
+                            <input
+                              type="password"
+                              class="form-control"
+                              name="password"
+                              id="InputPassword1" />
+                          </div>
                         </div>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary text-white"
-                      data-bs-dismiss="modal">
-                      Close
-                    </button>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                  </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary text-white"
+                        data-bs-dismiss="modal">
+                        Close
+                      </button>
+                      <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
