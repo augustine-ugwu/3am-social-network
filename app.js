@@ -136,10 +136,20 @@ app.post('/M00914279/login', async (req, res)=>{
   res.status(200)
   req.flash('success', `${user.username}, you logged In.`)
   req.session.isAuth = true;
-  req.session.fullname = user.fname + " " + user.lame
+  req.session.fullname = user.fname + " " + user.lname
   req.session.username = user.username
   req.session.id = user.id
   return res.redirect('/')
+})
+
+
+// @desc logout user
+// @route POST /api/M00914279/log out
+app.post('/M00914279/logout', async (req, res)=>{
+  req.session.destroy(err =>{
+      if(err) throw err;
+      return res.redirect("/");
+  })
 })
 
 
