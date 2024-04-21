@@ -676,8 +676,9 @@
         <!-- Main Content (Guest) -->
       <div class="container-fluid g-0">
         <div class="row gx-0">
+
+          <!-- flash message -->
           <div class="col-xl-9">
-            <!-- flash message -->
             <% if(success.length){ %>
               <div class="alert alert-success text-center fw-bold" style="margin-top:4.3rem;">
                   <%= success %>
@@ -689,10 +690,10 @@
                     <button type="button" class="btn-close ms-5" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <% } %>
-          </div>
-          <!-- Left Section -->
+          </div> <!-- endflash -->
+
           <div
-            class="col-xl-9 left-section position-relative d-flex align-items-center justify-content-center overflow-hidden pt-1">
+            class="col-xl-9 left-section position-relative d-flex flex-column align-items-center justify-content-center overflow-hidden pt-1">
             <div class="text-center z-1 w-75">
               <div class="px-3 lh-sm">
                 <h1 class="fs-1 fw-bolder mt-0">
