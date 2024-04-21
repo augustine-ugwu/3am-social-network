@@ -96,6 +96,48 @@ app.post('/M00914279/user/register', async (req, res)=>{
   }
 })
 
+// @desc get posts
+// @route GET /api/MM00914279/login
+app.post('/M00914279/login', async (req, res)=>{
+  const {username, password} = req.body;
+
+  console.log(req.body)
+
+  // check if field is ready
+  if(!username || !password){
+      res.status(400)
+      req.flash('error', "username or password can't be empty")
+      return res.redirect('/')
+  }
+
+  // Return the user
+  const user = await User.findOne({username})
+
+  // check if user doesnt exist
+  if(! user){
+      res.status(400)
+      req.flash('error', "Incorrect username or password")
+      return res.redirect('/')
+  }
+  
+  // check if password is match
+  const isMatch = await bcrypt.compare(password, user.password)
+  if(!isMatch){
+      res.status(400)
+      req.flash('error', "Incorrect password")
+      return res.redirect('/')
+  }
+
+  // log in user and set is Auth to true
+  res.status(200)
+  req.flash('success', `${user.username}, you logged In.`)
+  req.session.isAuth = true;
+  req.session.fullname = user.fname + " " + user.lame
+  req.session.email = user.username
+  req.session.id = user.id
+  return res.redirect('/')
+})
+
 
 // user post content
 app.post('/M00914279', async (req, res)=>{
