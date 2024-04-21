@@ -22,6 +22,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// setup sessions
+app.use(session({
+  secret: 'secret',
+  cookie:{
+      maxAge: 7 * 24 * 60 * 60 * 1000
+  },
+  resave: false,
+  saveUninitialized: false,
+  store: store
+}))
 
 // connect db
 connectDB();
@@ -31,40 +41,59 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(flash())
+
+
 //routes
 app.get('/', async (req, res)=>{
   const posts = await Post.find()
   
-  const context = {}
+  const context = {
+    success: req.flash("success"), 
+    error: req.flash("error"), 
+  }
   res.render('index.ejs', context)
 })
 
 // register user
 app.post('/M00914279/user/register', async (req, res)=>{
-  const {userid, email, fullname, password} = req.body
+  const {username, email, fname, lname, password1} = req.body
   
-  if(!userid || !email || !fullname || !password){
+  if(!username || !email || !fname || !password1){
       res.status(400)
       throw new Error(`Please body can't be empty`)
   }
 
+  // check if user already exist
+  const userExist = await User.findOne({email})
+  if(userExist){
+      res.status(400)
+      req.flash('error', "User already exist, login.")
+      return res.redirect('/')
+  }
+
+
   // hash password
   const salt = await bcrypt.genSalt(10)
-  const hashed_password = await bcrypt.hash(password, salt)
+  const hashed_password = await bcrypt.hash(password1, salt)
 
   // create user
   const user = await User.create({
-      userid,
-      fullname,
+      username,
+      fname,
+      lname,
       email,
       password: hashed_password
   })
-
-    res.status(201).json({
-        _id: user.id,
-        userid: user.userid,
-        fullname: user.fullname
-    })
+  if (user){
+    res.status(201)
+    req.flash("success", `Registration successful for ${username}.`)
+    return res.redirect('/')
+  }
+  else{
+      res.status(400)
+      throw new Error("Invalid user data.")
+  }
 })
 
 
