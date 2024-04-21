@@ -62,23 +62,6 @@
         </div>
       </nav>
 
-      <!-- flash message -->
-      <div class="row">
-        <article class="col-12 col-md-9">
-            <% if(success.length){ %>
-                <div class="alert alert-success text-center fw-bold" style="margin-top:4rem">
-                    <%= success %>
-                    <button type="button" class="btn-close ms-5" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            <% } else if(error.length){  %>
-                <div class="alert alert-danger text-center fw-bold" style="margin-top:4rem">
-                    <%= error %>
-                    <button type="button" class="btn-close ms-5" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            <% } %>
-        </article>
-    </div>
-
       <!-- Modal for Sign Up -->
       <div
         class="modal fade m-3"
@@ -187,7 +170,20 @@
       <!-- Main Section (If User Authenticated == True) -->
       <div class="container-fluid g-0 bg-body-secondary p-4 mt-5">
         <div class="row">
+
           <div class="col-xl-9">
+            <!-- flash message -->
+            <% if(success.length){ %>
+              <div class="alert alert-success text-center fw-bold" style="margin-top:2rem;">
+                  <%= success %>
+                  <button type="button" class="btn-close ms-5" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <% } else if(error.length){  %>
+                <div class="alert alert-danger text-center fw-bold" style="margin-top:2rem;">
+                    <%= error %>
+                    <button type="button" class="btn-close ms-5" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
             <!-- Title Heading -->
             <div
               class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -383,15 +379,16 @@
                       data-bs-dismiss="modal"
                       aria-label="Close"></button>
                   </div>
+                  <form method="post" action="/M00914279/create/post">
                   <div class="modal-body">
                     <!-- Create post form content -->
-                    <form>
                       <div class="mb-3">
                         <label for="postTitle" class="form-label">Title</label>
                         <input
                           type="text"
                           class="form-control"
                           id="postTitle"
+                          name="title"
                           aria-describedby="postTitleHelp" />
                       </div>
                       <div class="mb-3">
@@ -401,6 +398,7 @@
                         <textarea
                           class="form-control"
                           id="postContent"
+                          name="content"
                           rows="3"></textarea>
                       </div>
 
@@ -426,7 +424,6 @@
                           </button>
                         </div>
                       </div>
-                    </form>
                   </div>
                   <div class="modal-footer">
                     <button
@@ -439,6 +436,7 @@
                       Post Now
                     </button>
                   </div>
+                </form>
                 </div>
               </div>
             </div>
