@@ -33,21 +33,32 @@
             style="font-family: Bubblegum Sans"
             >3am Social Network</a
           >
-          <form class="d-flex" role="search">
-            <button
-              type="button"
-              class="btn btn-primary me-4 fw-medium px-sm-4"
-              data-bs-toggle="modal"
-              data-bs-target="#signup"
-              data-bs-whatever="@signup">
-              Sign up
-            </button>
-            <input
-              class="search me-2 border-0 rounded bg-body-secondary px-sm-5 py-sm-2"
-              type="search"
-              placeholder="enter search keywords"
-              aria-label="Search" />
+          <% if(is_authenticated) { %>
+            <form action="/M00914279/logout" method="post" class="d-flex" >
+              <input class="btn btn-outline-danger me-4 fw-medium px-sm-4" type="submit" value="Logout">
+              <input
+                class="search me-2 border-0 rounded bg-body-secondary px-sm-5 py-sm-2"
+                type="search"
+                placeholder="enter search keywords"
+                aria-label="Search" />
           </form>
+          <% } else{ %>
+            <form class="d-flex" role="search">
+              <button
+                type="button"
+                class="btn btn-primary me-4 fw-medium px-sm-4"
+                data-bs-toggle="modal"
+                data-bs-target="#signup"
+                data-bs-whatever="@signup">
+                Sign up
+              </button>
+              <input
+                class="search me-2 border-0 rounded bg-body-secondary px-sm-5 py-sm-2"
+                type="search"
+                placeholder="enter search keywords"
+                aria-label="Search" />
+            </form>
+          <% } %>
         </div>
       </nav>
 
@@ -173,7 +184,7 @@
       </div>
 
       <% if(is_authenticated){ %>
-        <!-- Main Section (If User Authenticated == True) -->
+      <!-- Main Section (If User Authenticated == True) -->
       <div class="container-fluid g-0 bg-body-secondary p-4 mt-5">
         <div class="row">
           <div class="col-xl-9">
