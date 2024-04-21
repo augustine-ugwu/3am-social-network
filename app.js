@@ -47,10 +47,12 @@ app.use(flash())
 //routes
 app.get('/', async (req, res)=>{
   const posts = await Post.find()
+  const is_authenticated = req.session.isAuth;
   
   const context = {
     success: req.flash("success"), 
     error: req.flash("error"), 
+    is_authenticated
   }
   res.render('index.ejs', context)
 })
