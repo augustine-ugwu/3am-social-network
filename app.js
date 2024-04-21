@@ -12,10 +12,16 @@ app.use(express.urlencoded({ extended: false }));
 // connect db
 connectDB();
 
+// set engine to ejs
+app.set('view engine', 'ejs');
+
 //routes
-app.get('/M00914279/posts', async (req, res)=>{
+app.get('/', async (req, res)=>{
   const posts = await Post.find()
-  res.status(200).json(posts)
+  
+
+  const context = {}
+  res.render('index.ejs', context)
 })
 
 // register user
