@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("./db");
+const path = require('path')
 const Post = require("./models/postModel");
 const User = require("./models/userModel");
 const bcrypt = require("bcryptjs");
@@ -9,17 +10,19 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
 // connect db
 connectDB();
 
 // set engine to ejs
 app.set('view engine', 'ejs');
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 //routes
 app.get('/', async (req, res)=>{
   const posts = await Post.find()
   
-
   const context = {}
   res.render('index.ejs', context)
 })
