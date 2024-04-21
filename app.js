@@ -50,12 +50,20 @@ app.get('/', async (req, res)=>{
   const posts = await Post.find()
   const is_authenticated = req.session.isAuth;
   const username = req.session.username
+  const users = await User.find({},
+    {
+       username:1, email:1, fname: 1, lname: 1
+   })
+  const friends = await Friend.find({},{sent_from:1, sent_to:1, status:1})  
+    .populate({path: 'sent_from', select: 'fname lname email username'})
+    .populate({path: 'sent_to', select: 'fname lname email username'})
   
   const context = {
     success: req.flash("success"), 
     error: req.flash("error"), 
     is_authenticated,
-    username
+    username,
+    users
   }
   res.render('index.ejs', context)
 })
