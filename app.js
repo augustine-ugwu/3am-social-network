@@ -48,7 +48,7 @@ app.use(flash())
 app.get('/', async (req, res)=>{
   const posts = await Post.find()
   const is_authenticated = req.session.isAuth;
-  const username = req.session.email
+  const username = req.session.username
   
   const context = {
     success: req.flash("success"), 
@@ -154,13 +154,16 @@ app.post('/M00914279/logout', async (req, res)=>{
 
 
 // user post content
-app.post('/M00914279', async (req, res)=>{
-  const {author, title, content} = req.body
-  
+app.post('/M00914279/create/post', async (req, res)=>{
+  const {title, content} = req.body
+
   if(!title || !content){
       res.status(400)
       throw new Error(`Please title and author can't be empty.`)
   }
+
+  const username = req.session.username;
+  const author = await User.findOne({username})
 
   // create post
   const post = await Post.create({
@@ -169,11 +172,16 @@ app.post('/M00914279', async (req, res)=>{
       content
   })
 
-    res.status(201).json({
-        _id: post.id,
-        title: post.title,
-        content : post.content
-    })
+  if (post){  
+    res.status(201);
+    req.flash('success', `Post ${post.title} created!`)
+
+    return res.redirect('/')
+  }
+  else{
+      res.status(400)
+      throw new Error("Invalid post data.")
+  }
 })
 
 
