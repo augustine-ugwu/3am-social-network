@@ -68,8 +68,9 @@
                 data-bs-dismiss="modal"
                 aria-label="Close"></button>
             </div>
+            <form action="/M00914279/user/register" method="post">
             <div class="modal-body">
-              <form>
+              
                 <div class="row">
                   <div class="mb-3 col-6">
                     <label for="InputFname" class="form-label"
@@ -79,6 +80,7 @@
                       type="text"
                       class="form-control"
                       id="inputFname"
+                      name="fname"
                       aria-describedby="Fname" />
                   </div>
 
@@ -88,6 +90,7 @@
                       type="text"
                       class="form-control"
                       id="inputLname"
+                      name="lname"
                       aria-describedby="Lname" />
                   </div>
                 </div>
@@ -100,6 +103,7 @@
                       type="email"
                       class="form-control"
                       id="InputEmail1"
+                      name="email"
                       aria-describedby="emailHelp" />
                   </div>
                   <div class="mb-3 col-6">
@@ -109,6 +113,7 @@
                     <input
                       type="text"
                       class="form-control"
+                      name="username"
                       id="InputUsername" />
                   </div>
                 </div>
@@ -121,6 +126,7 @@
                     <input
                       type="password"
                       class="form-control"
+                      name="password1"
                       id="InputPassword1" />
                   </div>
                   <div class="mb-3 col-6">
@@ -130,10 +136,11 @@
                     <input
                       type="password"
                       class="form-control"
+                      name="password2"
                       id="InputPassword2" />
                   </div>
                 </div>
-              </form>
+              <!-- </form> -->
             </div>
             <div class="modal-footer">
               <button
@@ -144,6 +151,7 @@
               </button>
               <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
+          </form>
           </div>
         </div>
       </div>
