@@ -1,0 +1,31 @@
+$theme-colors: (
+  "primary": midnightblue,
+  "secondary": grey,
+  "danger": #dc3545,
+  "success": #28a745,
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "Assets/css/custom.css";
+
+footer.sticky-footer {
+  padding: 1.5rem 0;
+  flex-shrink: 0;
+  .copyright {
+    line-height: 1;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  @each $position in [ "left", "bottom"] {
+    .border-#{$position}-#{$color} {
+      border-#{$position}: 0.25rem solid $value !important;
+    }
+  }
+}
+
+.text-xs {
+  font-size: 0.7rem;
+}
