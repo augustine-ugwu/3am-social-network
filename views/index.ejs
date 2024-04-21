@@ -51,6 +51,23 @@
         </div>
       </nav>
 
+      <!-- flash message -->
+      <div class="row">
+        <article class="col-12 col-md-9">
+            <% if(success.length){ %>
+                <div class="alert alert-success text-center fw-bold" style="margin-top:4rem">
+                    <%= success %>
+                    <button type="button" class="btn-close ms-5" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } else if(error.length){  %>
+                <div class="alert alert-danger text-center fw-bold" style="margin-top:4rem">
+                    <%= error %>
+                    <button type="button" class="btn-close ms-5" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
+        </article>
+    </div>
+
       <!-- Modal for Sign Up -->
       <div
         class="modal fade m-3"
@@ -155,124 +172,9 @@
         </div>
       </div>
 
-      <!-- Main Content (Guest) -->
-      <div class="container-fluid g-0">
-        <div class="row gx-0">
-          <!-- Left Section -->
-          <div
-            class="col-xl-9 left-section position-relative d-flex align-items-center justify-content-center overflow-hidden pt-1">
-            <div class="text-center z-1 w-75">
-              <div class="px-3 lh-sm">
-                <h1 class="fs-1 fw-bolder mt-0">
-                  Welcome to 3am Social Network
-                </h1>
-                <p class="fs-5 fw-medium mt-4">
-                  The ultimate platform for aspiring artists, musicians,
-                  producers, and DJs worldwide to connect, collaborate, and
-                  create together. Whether you're a seasoned professional or
-                  just starting your journey in the music industry, 3am Social
-                  Network is your gateway to a vibrant community of like-minded
-                  individuals passionate about music.
-                </p>
-                <button
-                  class="btn btn-primary fw-medium px-sm-4"
-                  type="button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#login"
-                  data-bs-whatever="@login">
-                  Login
-                </button>
-              </div>
-            </div>
-
-            <!-- Login Modal -->
-            <div
-              class="modal fade m-3"
-              id="login"
-              tabindex="-1"
-              aria-labelledby="loginLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="loginLabel">Login</h1>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"></button>
-                  </div>
-                  <!-- Login form  -->
-                  <form action="/M00914279/login" method="post">
-                    <div class="modal-body">
-                        <div class="row">
-                          <div class="mb-3 col">
-                            <label for="InputUsername" class="form-label"
-                              >Username</label
-                            >
-                            <input
-                              type="text"
-                              class="form-control"
-                              name="username"
-                              id="InputUsername" />
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="mb-3 col">
-                            <label for="InputPassword1" class="form-label"
-                              >Password</label
-                            >
-                            <input
-                              type="password"
-                              class="form-control"
-                              name="password"
-                              id="InputPassword1" />
-                          </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary text-white"
-                        data-bs-dismiss="modal">
-                        Close
-                      </button>
-                      <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Section -->
-          <div
-            class="col-xl-3 align-items-center justify-content-center pt-5 mt-4"
-            style="background-color: whitesmoke">
-            <p class="text-center fw-bolder fs-5 mb-0">News Feed</p>
-            <div class="card m-auto mt-2" style="width: 22rem">
-              <img
-                src="/Assets/img/img-233.jpg"
-                class="card-img-top"
-                alt="Music band photo" />
-              <div class="card-body">
-                <h5 class="card-title fs-6 fw-bold">
-                  New Album Release: "Midnight Melodies"
-                </h5>
-                <p class="card-text fs-6 lh-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris interdum.
-                </p>
-                <a href="#" class="btn btn-primary">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Main Section (If User Authenticated == True) -->
-      <div class="container-fluid g-0 bg-body-secondary p-4">
+      <% if(is_authenticated){ %>
+        <!-- Main Section (If User Authenticated == True) -->
+      <div class="container-fluid g-0 bg-body-secondary p-4 mt-5">
         <div class="row">
           <div class="col-xl-9">
             <!-- Title Heading -->
@@ -761,6 +663,126 @@
         </div>
       </div>
     </div>
+      <% }else{ %>
+        <!-- Main Content (Guest) -->
+      <div class="container-fluid g-0">
+        <div class="row gx-0">
+          <!-- Left Section -->
+          <div
+            class="col-xl-9 left-section position-relative d-flex align-items-center justify-content-center overflow-hidden pt-1">
+            <div class="text-center z-1 w-75">
+              <div class="px-3 lh-sm">
+                <h1 class="fs-1 fw-bolder mt-0">
+                  Welcome to 3am Social Network
+                </h1>
+                <p class="fs-5 fw-medium mt-4">
+                  The ultimate platform for aspiring artists, musicians,
+                  producers, and DJs worldwide to connect, collaborate, and
+                  create together. Whether you're a seasoned professional or
+                  just starting your journey in the music industry, 3am Social
+                  Network is your gateway to a vibrant community of like-minded
+                  individuals passionate about music.
+                </p>
+                <button
+                  class="btn btn-primary fw-medium px-sm-4"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#login"
+                  data-bs-whatever="@login">
+                  Login
+                </button>
+              </div>
+            </div>
+
+            <!-- Login Modal -->
+            <div
+              class="modal fade m-3"
+              id="login"
+              tabindex="-1"
+              aria-labelledby="loginLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="loginLabel">Login</h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+                  </div>
+                  <!-- Login form  -->
+                  <form action="/M00914279/login" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                          <div class="mb-3 col">
+                            <label for="InputUsername" class="form-label"
+                              >Username</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="username"
+                              id="InputUsername" />
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="mb-3 col">
+                            <label for="InputPassword1" class="form-label"
+                              >Password</label
+                            >
+                            <input
+                              type="password"
+                              class="form-control"
+                              name="password"
+                              id="InputPassword1" />
+                          </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary text-white"
+                        data-bs-dismiss="modal">
+                        Close
+                      </button>
+                      <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Section -->
+          <div
+            class="col-xl-3 align-items-center justify-content-center pt-5 mt-4"
+            style="background-color: whitesmoke">
+            <p class="text-center fw-bolder fs-5 mb-0">News Feed</p>
+            <div class="card m-auto mt-2" style="width: 22rem">
+              <img
+                src="/Assets/img/img-233.jpg"
+                class="card-img-top"
+                alt="Music band photo" />
+              <div class="card-body">
+                <h5 class="card-title fs-6 fw-bold">
+                  New Album Release: "Midnight Melodies"
+                </h5>
+                <p class="card-text fs-6 lh-sm">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Mauris interdum.
+                </p>
+                <a href="#" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+      
+      
 
     <!-- Footer -->
     <footer class="sticky-footer bg-white">
