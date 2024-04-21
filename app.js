@@ -3,6 +3,7 @@ const connectDB = require("./db");
 const path = require('path')
 const Post = require("./models/postModel");
 const User = require("./models/userModel");
+const Friend = require('./models/friendModel')
 const bcrypt = require("bcryptjs");
 
 const session = require('express-session');
@@ -198,6 +199,52 @@ app.put('/M00914279/update/post/:id', async (req, res)=>{
   })
   
   res.status(200).json(updatedPost)
+})
+
+
+// @desc following system
+// @route GET /
+app.post('/M00850923/:username/follow', async (req, res)=>{
+  const request_from = req.session.username
+  const request_to = req.params.username
+
+  // check if user trying to follow himself
+  if(request_from === request_to){
+      res.status(400)
+      req.flash("error", `Can't follow yourself.`)
+      return res.redirect('/')
+  }
+  const from_user = await User.findOne({username: request_from});
+  const to_user = await User.findOne({username: request_to});
+
+  // console.log(from_user)
+  // console.log(to_user)
+
+  const friends = await Friend.find({},{sent_from:1, sent_to:1, status:1})
+  .populate({path: 'sent_from', select: 'fname lname email username '})
+ .populate({path: 'sent_to', select: 'fname lname email username '})
+  
+  if(friends.length > 0){
+      if(friends.filter(friend =>
+          (friend.sent_from.email === from_user.email) && (friend.sent_to.email === to_user.email)
+          || (friend.sent_from.email === to_user.email) && (friend.sent_to.email === from_user.email)).length > 0){
+          res.status(400)
+          req.flash("error", `already sent request to user.`)
+          console.log(true)
+          return res.redirect('/')
+      }
+  }
+  
+  const friend_request = await Friend.create({
+      sent_from: from_user,
+      sent_to: to_user
+  })
+
+  if(friend_request){
+      res.status(201)
+      req.flash("success", `request sent to ${to_user.username}.`)
+      return res.redirect('/')
+  }
 })
 
 
