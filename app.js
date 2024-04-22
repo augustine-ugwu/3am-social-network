@@ -232,7 +232,7 @@ app.put('/M00914279/update/post/:id', async (req, res)=>{
 
 // @desc following system
 // @route GET /
-app.post('/M00850923/:username/follow', async (req, res)=>{
+app.post('/M00914279/:username/follow', async (req, res)=>{
   const request_from = req.session.username
   const request_to = req.params.username
 
@@ -271,6 +271,34 @@ app.post('/M00850923/:username/follow', async (req, res)=>{
       return res.redirect('/')
   }
 })
+
+// @desc following system
+// @route confirm or decline request
+app.post('/M00914279/confirm/', async (req, res)=>{
+  const {choice, token} = req.body;
+
+  // if choice is accepted
+  if(choice === "accepted"){
+      const accepted_req = await Friend.findByIdAndUpdate({_id: token}, {status: "accepted"});
+      if(accepted_req ){
+          res.status(201)
+          req.flash("success", `Request Accepted.`)
+          return res.redirect('/')
+      }
+  }
+
+  // if choice is rejected
+  else if(choice === "rejected"){
+      const rejected_req = await Friend.findByIdAndUpdate({_id: token}, {status: "rejected"});
+      if(rejected_req ){
+          res.status(201)
+          req.flash("error", `request rejected.`)
+          return res.redirect('/')
+      }
+  }
+
+})
+
 
 
 app.listen(5050, () => {
