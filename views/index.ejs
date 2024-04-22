@@ -573,11 +573,9 @@
                     ><%= user.fname %> <%= user.lname %></span
                   >
                   <div class="ms-auto">
-                    <button
-                      type="button"
-                      class="btn btn-success fw-medium px-sm-4 text-white">
-                      Send Request
-                    </button>
+                    <form action="/M00850923/<%= user.username %>/follow/" method="post">
+                      <input type="submit" value="Send Request" class="btn btn-success fw-medium px-sm-4 text-white">
+                  </form>
                   </div>
                 </div>
               </div>
