@@ -57,13 +57,31 @@ app.get('/', async (req, res)=>{
   const friends = await Friend.find({},{sent_from:1, sent_to:1, status:1})  
     .populate({path: 'sent_from', select: 'fname lname email username'})
     .populate({path: 'sent_to', select: 'fname lname email username'})
+
+    var filtered_users = [];
+    users.forEach(user=>{
+        if(user.username !== username){
+            // console.log("user: ", user)
+            if(friends.length > 0){
+                if(!(friends.filter(friend =>
+                    (friend.sent_from.username === user.username) && (friend.sent_to.username === username)
+                    || (friend.sent_from.username === username) && (friend.sent_to.username === user.username)).length > 0)){
+                        filtered_users.unshift(user)
+                    }
+            }else{
+                console.log("tested")
+                filtered_users.unshift(user)
+            }
+        }
+    })
   
   const context = {
     success: req.flash("success"), 
     error: req.flash("error"), 
     is_authenticated,
     username,
-    users
+    users,
+    filtered_users
   }
   res.render('index.ejs', context)
 })
