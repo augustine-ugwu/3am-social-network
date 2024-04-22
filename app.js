@@ -62,7 +62,6 @@ app.get('/', async (req, res)=>{
     var filtered_users = [];
     users.forEach(user=>{
         if(user.username !== username){
-            // console.log("user: ", user)
             if(friends.length > 0){
                 if(!(friends.filter(friend =>
                     (friend.sent_from.username === user.username) && (friend.sent_to.username === username)
@@ -70,7 +69,6 @@ app.get('/', async (req, res)=>{
                         filtered_users.unshift(user)
                     }
             }else{
-                console.log("tested")
                 filtered_users.unshift(user)
             }
         }
@@ -133,8 +131,6 @@ app.post('/M00914279/user/register', async (req, res)=>{
 // @route GET /api/MM00914279/login
 app.post('/M00914279/login', async (req, res)=>{
   const {username, password} = req.body;
-
-  console.log(req.body)
 
   // check if field is ready
   if(!username || !password){
@@ -255,7 +251,6 @@ app.post('/M00914279/:username/follow', async (req, res)=>{
           || (friend.sent_from.username === to_user.username) && (friend.sent_to.username === from_user.username)).length > 0){
           res.status(400)
           req.flash("error", `already sent request to user.`)
-          console.log(true)
           return res.redirect('/')
       }
   }
