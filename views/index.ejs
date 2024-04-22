@@ -229,17 +229,18 @@
                           <div class="card-body">
                             <div class="d-flex flex-row">
                               <span class="m-auto ms-0 fw-medium"><%= friend.sent_from.fname %> <%= friend.sent_from.lname %></span>
-                              <div class="ms-auto">
-                                <button
-                                  type="button"
-                                  class="btn btn-success fw-medium px-sm-4 text-white">
-                                  Accept
-                                </button>
-                                <button
-                                  type="button"
-                                  class="btn btn-danger fw-medium px-sm-4">
-                                  Reject
-                                </button>
+                              <div class="ms-auto d-flex">
+                                <form action="/M00914279/confirm/" method="post">
+                                  <input type="hidden" name="choice" value="accepted">
+                                  <input type="hidden" name="token" value="<%= friend._id %>">
+                                  <input type="submit" value="Accept" class="btn btn-success fw-medium px-sm-4 text-white">
+                                  
+                              </form>
+                              <form action="/M00914279/confirm/" method="post" class="ms-3">
+                                  <input type="hidden" name="choice" value="rejected">
+                                  <input type="hidden" name="token" value="<%= friend._id %>">
+                                  <input type="submit" value="Reject" class="btn btn-danger fw-medium px-sm-4">
+                              </form>
                               </div>
                             </div>
                           </div>
@@ -526,7 +527,7 @@
                     ><%= user.fname %> <%= user.lname %></span
                   >
                   <div class="ms-auto">
-                    <form action="/M00850923/<%= user.username %>/follow/" method="post">
+                    <form action="/M00914279/<%= user.username %>/follow/" method="post">
                       <input type="submit" value="Send Request" class="btn btn-success fw-medium px-sm-4 text-white">
                   </form>
                   </div>
