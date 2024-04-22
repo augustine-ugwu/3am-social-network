@@ -243,17 +243,14 @@ app.post('/M00850923/:username/follow', async (req, res)=>{
   const from_user = await User.findOne({username: request_from});
   const to_user = await User.findOne({username: request_to});
 
-  // console.log(from_user)
-  // console.log(to_user)
-
   const friends = await Friend.find({},{sent_from:1, sent_to:1, status:1})
   .populate({path: 'sent_from', select: 'fname lname email username '})
  .populate({path: 'sent_to', select: 'fname lname email username '})
   
   if(friends.length > 0){
       if(friends.filter(friend =>
-          (friend.sent_from.email === from_user.email) && (friend.sent_to.email === to_user.email)
-          || (friend.sent_from.email === to_user.email) && (friend.sent_to.email === from_user.email)).length > 0){
+          (friend.sent_from.username === from_user.username) && (friend.sent_to.username === to_user.username)
+          || (friend.sent_from.username === to_user.username) && (friend.sent_to.username === from_user.username)).length > 0){
           res.status(400)
           req.flash("error", `already sent request to user.`)
           console.log(true)
