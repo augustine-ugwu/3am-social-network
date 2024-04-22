@@ -57,6 +57,7 @@ app.get('/', async (req, res)=>{
   const friends = await Friend.find({},{sent_from:1, sent_to:1, status:1})  
     .populate({path: 'sent_from', select: 'fname lname email username'})
     .populate({path: 'sent_to', select: 'fname lname email username'})
+    .sort({createdAt: -1})
 
     var filtered_users = [];
     users.forEach(user=>{
@@ -81,7 +82,8 @@ app.get('/', async (req, res)=>{
     is_authenticated,
     username,
     users,
-    filtered_users
+    filtered_users,
+    friends
   }
   res.render('index.ejs', context)
 })
