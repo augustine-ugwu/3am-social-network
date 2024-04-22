@@ -426,78 +426,32 @@
               </div>
               <div class="col">
                 <div class="row row-cols-1 row-cols-md-3 g-4">
-                  <div class="col">
-                    <div class="card h-100">
-                      <img
-                        src="/img/img-201.jpg"
-                        class="card-img-top"
-                        alt="Music band" />
-                      <div class="card-body">
-                        <h5 class="card-title">
-                          Meet the Talented Artists of Our Community!
-                        </h5>
-                        <p class="card-text">
-                          It's that time of the week again, folks! Get ready to
-                          meet some incredible talents who are lighting up our
-                          musical community with their passion and creativity.
-                        </p>
+                  <% if(posts.length > 0){ %>
+                    <% posts.forEach(post =>{ %>
+                      <div class="col">
+                        <div class="card h-100">
+                          <img
+                            src="/img/img-201.jpg"
+                            class="card-img-top"
+                            alt="Music band" />
+                          <div class="card-body">
+                            <h5 class="card-title">
+                              <%= post.title %>
+                            </h5>
+                            <p class="card-text">
+                              <%= post.content %>
+                            </p>
+                          </div>
+                          <div class="card-footer d-flex">
+                            <small class="text-muted">Posted 6 mins ago</small>
+                            <small class="text-muted me-0 m-auto"
+                              >By <%= post.author.fname %> <%= post.author.lname %> </small
+                            >
+                          </div>
+                        </div>
                       </div>
-                      <div class="card-footer d-flex">
-                        <small class="text-muted">Posted 6 mins ago</small>
-                        <small class="text-muted me-0 m-auto"
-                          >By Eben Thompson</small
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100">
-                      <img
-                        src="/img/img-202.jpg"
-                        class="card-img-top"
-                        alt="Music band" />
-                      <div class="card-body">
-                        <h5 class="card-title">
-                          An epic night of musical fusion!
-                        </h5>
-                        <p class="card-text">
-                          Our next jam session is just around the corner, and
-                          we're dialing up the excitement to eleven! Join us
-                          this Friday night at our studio for an unforgettable
-                          musical fusion experience.
-                        </p>
-                      </div>
-                      <div class="card-footer d-flex">
-                        <small class="text-muted">Posted 30 mins ago</small>
-                        <small class="text-muted me-0 m-auto"
-                          >By Joel Anderson</small
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card h-100">
-                      <img
-                        src="/img/img-203.jpg"
-                        class="card-img-top"
-                        alt="Music band" />
-                      <div class="card-body">
-                        <h5 class="card-title">
-                          Unlock Your Sound with the Latest Equipment Trends!
-                        </h5>
-                        <p class="card-text">
-                          In this edition of Gear Talk, we're diving deep into
-                          the hottest trends and innovations in musical gear.
-                        </p>
-                      </div>
-                      <div class="card-footer d-flex">
-                        <small class="text-muted">Posted 52 mins ago</small>
-                        <small class="text-muted me-0 m-auto"
-                          >By Stacey Brighton</small
-                        >
-                      </div>
-                    </div>
-                  </div>
+                    <% }) %>
+                  <% } %>
                 </div>
               </div>
             </div>
