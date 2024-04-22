@@ -223,77 +223,30 @@
                     </h6>
                   </div>
                   <!-- List of requests -->
-                  <div class="card-body">
-                    <div class="d-flex flex-row">
-                      <span class="m-auto ms-0 fw-medium">John Matthew</span>
-                      <div class="ms-auto">
-                        <button
-                          type="button"
-                          class="btn btn-success fw-medium px-sm-4 text-white">
-                          Accept
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-danger fw-medium px-sm-4">
-                          Reject
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="divider my-0" />
-                  <div class="card-body">
-                    <div class="d-flex flex-row">
-                      <span class="m-auto ms-0 fw-medium">Greg Phillips</span>
-                      <div class="ms-auto">
-                        <button
-                          type="button"
-                          class="btn btn-success fw-medium px-sm-4 text-white">
-                          Accept
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-danger fw-medium px-sm-4">
-                          Reject
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="divider my-0" />
-                  <div class="card-body">
-                    <div class="d-flex flex-row">
-                      <span class="m-auto ms-0 fw-medium">Cole Peterson</span>
-                      <div class="ms-auto">
-                        <button
-                          type="button"
-                          class="btn btn-success fw-medium px-sm-4 text-white">
-                          Accept
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-danger fw-medium px-sm-4">
-                          Reject
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="divider my-0" />
-                  <div class="card-body">
-                    <div class="d-flex flex-row">
-                      <span class="m-auto ms-0 fw-medium">Susie Thomas</span>
-                      <div class="ms-auto">
-                        <button
-                          type="button"
-                          class="btn btn-success fw-medium px-sm-4 text-white">
-                          Accept
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-danger fw-medium px-sm-4">
-                          Reject
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  <% friends.forEach(friend =>{ %>
+                    <% if(friend.sent_to.username === username){ %>
+                        <% if(friend.status === "request"){ %>
+                          <div class="card-body">
+                            <div class="d-flex flex-row">
+                              <span class="m-auto ms-0 fw-medium"><%= friend.sent_from.fname %> <%= friend.sent_from.lname %></span>
+                              <div class="ms-auto">
+                                <button
+                                  type="button"
+                                  class="btn btn-success fw-medium px-sm-4 text-white">
+                                  Accept
+                                </button>
+                                <button
+                                  type="button"
+                                  class="btn btn-danger fw-medium px-sm-4">
+                                  Reject
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <hr class="divider my-0" />
+                        <% } %>
+                    <% } %>
+                  <% }) %>
                 </div>
               </div>
 
