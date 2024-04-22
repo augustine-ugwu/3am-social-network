@@ -48,6 +48,8 @@ app.use(flash())
 //routes
 app.get('/', async (req, res)=>{
   const posts = await Post.find()
+      .populate({path: 'author', select: 'fname lname email username'})
+      .sort({createdAt: -1})
   const is_authenticated = req.session.isAuth;
   const username = req.session.username
   const users = await User.find({},
@@ -81,7 +83,8 @@ app.get('/', async (req, res)=>{
     username,
     users,
     filtered_users,
-    friends
+    friends,
+    posts
   }
   res.render('index.ejs', context)
 })
