@@ -130,8 +130,7 @@ app.post('/M00914279/user/register', async (req, res)=>{
   }
 })
 
-// @desc get posts
-// @route GET /api/MM00914279/login
+// login user
 app.post('/M00914279/login', async (req, res)=>{
   const {username, password} = req.body;
 
@@ -170,9 +169,7 @@ app.post('/M00914279/login', async (req, res)=>{
   return res.redirect('/')
 })
 
-
-// @desc logout user
-// @route POST /api/M00914279/log out
+// logout user
 app.post('/M00914279/logout', async (req, res)=>{
   req.session.destroy(err =>{
       if(err) throw err;
@@ -228,9 +225,7 @@ app.put('/M00914279/update/post/:id', async (req, res)=>{
   res.status(200).json(updatedPost)
 })
 
-
-// @desc following system
-// @route GET /
+// friend request
 app.post('/M00914279/:username/follow', async (req, res)=>{
   const request_from = req.session.username
   const request_to = req.params.username
@@ -270,8 +265,7 @@ app.post('/M00914279/:username/follow', async (req, res)=>{
   }
 })
 
-// @desc following system
-// @route confirm or decline request
+// confirm or reject request
 app.post('/M00914279/confirm/', async (req, res)=>{
   const {choice, token} = req.body;
 
